@@ -1,5 +1,7 @@
 from fastapi import FastAPI
-from database import connect, Word
+from database import connect
+from models import Word
+
 app = FastAPI()
 
 
