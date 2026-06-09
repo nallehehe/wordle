@@ -1,0 +1,1 @@
+from routes.word import router
