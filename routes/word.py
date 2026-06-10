@@ -1,11 +1,10 @@
 from fastapi import APIRouter
 from models import Word
+from services import insert_word
 
 router = APIRouter()
 
 
 @router.post("/word")
 async def create_word(body: Word):
-    word = Word(name=body.name)
-    await word.insert()
-    return word
+    return await insert_word(body.name)

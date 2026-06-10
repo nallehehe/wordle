@@ -1,0 +1,1 @@
+from services.word import insert_word
