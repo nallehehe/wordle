@@ -9,7 +9,7 @@ async def insert_word(name: str):
     if len(name) != 5:
         raise HTTPException(status_code=400, detail="Word must be 5 letters")
     if not name.isalpha():
-        raise HTTPException(status_code=409, detail="Only letters are allowed")
+        raise HTTPException(status_code=400, detail="Only letters are allowed")
     word = Word(name=name)
     await word.insert()
     return word
