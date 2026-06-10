@@ -15,6 +15,8 @@ async def create_word(body: Word):
 @router.get("/words")
 async def get_words():
     words = await Word.find_all().to_list()
+    if not words:
+        raise HTTPException(status_code=404, detail="Words not found")
     return words
 
 
