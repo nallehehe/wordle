@@ -1,1 +1,1 @@
-from services.word import insert_word
+from services.word import insert_word, random_word
