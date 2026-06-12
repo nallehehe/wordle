@@ -17,13 +17,14 @@ async def insert_word(name: str):
 
 
 async def new_word():
-    words = await Word.find_all().sort(Word.updated_at).to_list()
+    words = await Word.find_all().to_list()
     if not words:
         raise HTTPException(status_code=404, detail="No words found")
 
-    last_used_word = words[0]
-    last_used_word.updated_at = datetime.utcnow()
+    used_word = min(words, key=lambda word: word.updated_at)
 
-    await last_used_word.save()
+    used_word.updated_at = datetime.utcnow()
 
-    return last_used_word
+    await used_word.save()
+
+    return used_word
