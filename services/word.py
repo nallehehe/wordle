@@ -1,6 +1,5 @@
 from models import Word
 from fastapi import HTTPException
-import random
 from datetime import datetime
 
 
@@ -17,15 +16,14 @@ async def insert_word(name: str):
     return word
 
 
-async def random_word():
-    word = await Word.find_all().to_list()
-    if not word:
+async def new_word():
+    words = await Word.find_all().sort(Word.updated_at).to_list()
+    if not words:
         raise HTTPException(status_code=404, detail="No words found")
 
-    random_found_word = random.choice(word)
+    last_used_word = words[0]
+    last_used_word.updated_at = datetime.utcnow()
 
-    random_found_word.updated_at = datetime.utcnow()
+    await last_used_word.save()
 
-    await random_found_word.save()
-
-    return random_found_word
+    return last_used_word

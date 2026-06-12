@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException
 from models import Word
-from services import insert_word, random_word
+from services import insert_word, new_word
 from beanie import PydanticObjectId
 
 router = APIRouter()
@@ -19,9 +19,9 @@ async def get_words():
     return words
 
 
-@router.get("/word/random")
-async def get_random_word():
-    return await random_word()
+@router.get("/word/new")
+async def get_new_word():
+    return await new_word()
 
 
 @router.get("/word/{word_id}")
