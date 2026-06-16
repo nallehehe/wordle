@@ -1,5 +1,4 @@
-from fastapi import APIRouter, HTTPException
-from models import Game
+from fastapi import APIRouter
 from services import new_game
 
 router = APIRouter()

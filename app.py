@@ -6,11 +6,11 @@ def multiply(x): return x * 2
 
 print(multiply(5))
 
-names = ["Charlie", "Alice", "Bob"]
+# names = ["Charlie", "Alice", "Bob"]
 
-sorted_names = sorted(names, key=lambda name: len(name))
+# sorted_names = sorted(names, key=lambda name: len(name))
 
-print(sorted_names)
+# print(sorted_names)
 
 numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
@@ -74,7 +74,7 @@ print(return_games)
 
 numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
-return_numbers = filter((lambda number: number % 2 == 0)(lambda number: number * 2), numbers)
+return_numbers = filter((lambda number: number % 2 == 0)
+                        (lambda number: number * 2), numbers)
 
 print(list(return_numbers))
-
