@@ -74,8 +74,7 @@ print(return_games)
 
 numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
-even_numbers = filter(lambda number: number % 2 == 0, numbers)
-doubled_numbers = map(lambda number: number * 2, even_numbers)
+return_numbers = filter((lambda number: number % 2 == 0)(lambda number: number * 2), numbers)
 
-print(list(doubled_numbers))
+print(list(return_numbers))
 
