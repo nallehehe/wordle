@@ -1,6 +1,6 @@
 from models import Word
 from fastapi import HTTPException
-from datetime import date
+from datetime import datetime
 
 
 async def insert_word(name: str):
@@ -17,14 +17,12 @@ async def insert_word(name: str):
 
 
 async def new_word():
-    words = await Word.find_all().to_list()
-    if not words:
+    word = (await Word.find_all().sort("last_used_at").first_or_none())
+    if not word:
         raise HTTPException(status_code=404, detail="No words found")
 
-    used_word = min(words, key=lambda word: word.last_used_date or date.min)
+    word.last_used_date = datetime.utcnow()
 
-    used_word.last_used_date = date.today()
+    await word.save()
 
-    await used_word.save()
-
-    return used_word
+    return word
