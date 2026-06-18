@@ -2,6 +2,7 @@ from beanie import Document, Link
 from pydantic import Field
 from models import Word
 from typing import List
+from datetime import datetime
 
 
 class Game(Document):
@@ -10,6 +11,7 @@ class Game(Document):
     completed: bool = False
     won: bool = False
     guesses: List[str] = []
+    created_at: datetime = Field(default_factory=datetime.now)
 
     class Settings:
         name = "games"

@@ -1,0 +1,1 @@
+from schemas.game import GuessRequest
