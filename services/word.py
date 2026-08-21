@@ -4,6 +4,8 @@ from datetime import date
 
 
 async def insert_word(name: str):
+    name = name.strip().lower()
+
     existing_word = await Word.find_one(Word.name == name)
     if existing_word:
         raise HTTPException(status_code=409, detail="Word already exists")
@@ -13,6 +15,7 @@ async def insert_word(name: str):
         raise HTTPException(status_code=400, detail="Only letters are allowed")
     word = Word(name=name)
     await word.insert()
+
     return word
 
 

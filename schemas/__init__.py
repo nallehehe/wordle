@@ -1,1 +1,1 @@
-from schemas.game import GuessRequest
+from schemas.game import Guess

@@ -2,5 +2,5 @@ from pydantic import BaseModel
 from pydantic import Field
 
 
-class GuessRequest(BaseModel):
+class Guess(BaseModel):
     guess: str = Field(min_length=5, max_length=5)

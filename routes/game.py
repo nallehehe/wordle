@@ -2,7 +2,7 @@ from fastapi import APIRouter, HTTPException
 from services import new_game, game_guess
 from beanie import PydanticObjectId
 from models import Game
-from schemas import GuessRequest
+from schemas import Guess
 
 
 router = APIRouter()
@@ -30,5 +30,5 @@ async def get_game(game_id: PydanticObjectId):
 
 
 @router.post("/game/{game_id}/guess")
-async def guess(game_id: PydanticObjectId, body: GuessRequest):
+async def guess(game_id: PydanticObjectId, body: Guess):
     return await game_guess(game_id, body.guess)
