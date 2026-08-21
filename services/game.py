@@ -25,10 +25,18 @@ async def game_guess(game_id: PydanticObjectId, guess: str):
 
     if game.completed:
         raise HTTPException(status_code=400, detail="Game is already over")
+    
+    normalized_guess = guess.strip().lower()
 
-    is_correct = guess.strip().lower() == game.word.name.strip().lower()
+    if normalized_guess in game.guesses:
+        raise HTTPException(
+            status_code=400, detail="You've already guessed that.")
+    
+    guess_attempt = guess.strip().lower() == game.word.name.strip().lower()
 
-    if is_correct:
+    game.guesses.append(guess.strip().lower())
+
+    if guess_attempt:
         game.won = True
         game.completed = True
     else:
